@@ -5,7 +5,6 @@
 -- Aquí no se filtra ni se deduplica: los borrados lógicos se exponen como
 -- is_deleted y es Silver quien decide qué hacer con ellos.
 -- La tabla no tiene PK propia: construimos una clave sustituta con md5().
--- El día 3 la sustituiremos por dbt_utils.generate_surrogate_key.
 -- =============================================================================
 
 with source as (
@@ -14,7 +13,7 @@ with source as (
 
 renamed as (
     select
-          generate_surrogate_key('order_id', 'product_id')       as order_item_id
+        {{ dbt_utils.generate_surrogate_key(['order_id', 'product_id']) }} as order_item_id
         , order_id
         , product_id
         , quantity
@@ -22,5 +21,4 @@ renamed as (
         , _fivetran_synced                         as date_load
     from source
 )
-
 select * from renamed
