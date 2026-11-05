@@ -1,7 +1,7 @@
 sources:
 - name: sql_server_dbo
   description: Base de datos transaccional del e-commerce
-  database: "{{ env_var('DBT_BRONZE_DB') }}"
+  database: "dev_bronze_db"
   schema: sql_server_dbo
   tables:
   - name: orders

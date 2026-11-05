@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: google_sheets
-    database: "{{ env_var('DBT_BRONZE_DB') }}"
+    database: "dev_bronze_db"
     schema: google_sheets
     tables:
       - name: budget
