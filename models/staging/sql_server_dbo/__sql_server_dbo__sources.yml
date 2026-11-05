@@ -1,12 +1,5 @@
-sources:
-- name: sql_server_dbo
-  description: Base de datos transaccional del e-commerce
-  database: "dev_bronze_db"
-  schema: sql_server_dbo
-  tables:
-  - name: orders
-    description: Pedidos realizados por los usuarios.
-    columns:
-    - name: order_id
-      description: UUID del pedido.
-  - name: users
+version: 2
+
+# Las fuentes se declaran en models/bronze/_sql_server_dbo__sources.yml.
+# No repetirlas aquí: dbt no admite dos sources con el mismo nombre y tabla.
+sources: []
