@@ -14,7 +14,7 @@ with source as (
 
 renamed as (
     select
-          md5(order_id || '-' || product_id)       as order_item_id
+          generate_surrogate_key('order_id', 'product_id')       as order_item_id
         , order_id
         , product_id
         , quantity
