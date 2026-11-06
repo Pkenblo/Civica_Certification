@@ -11,10 +11,6 @@ models:
                 to: ref('stg_sql_server_dbo__products')
                 field: product_id
       - name: quantity_budgeted
-        tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-                inclusive: false
+        data_tests: [positive_values]
       - name: budget_month
       - name: date_load
