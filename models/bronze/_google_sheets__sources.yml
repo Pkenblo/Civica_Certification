@@ -8,5 +8,10 @@ sources:
       - name: budget
         columns:
           - name: _row
+            data_tests: [not_null, unique]
+          - name: product_id
             data_tests:
-              - not_null
+            - relationships:
+                arguments:
+                  to: source('sql_server_dbo', 'products')
+                  field: product_id

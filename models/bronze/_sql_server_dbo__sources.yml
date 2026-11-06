@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: sql_server_dbo
+    description: Base de datos transaccional del e-commerce
     database: "dev_bronze_db"
     schema: sql_server_dbo
     tables:
@@ -38,8 +39,10 @@ sources:
               - not_null
       - name: order_items
       - name: orders
+        description: Pedidos realizados por los usuarios.
         columns:
           - name: order_id
+            description: UUID del pedido.
             data_tests:
               - not_null
       - name: products
