@@ -1,3 +1,16 @@
+{{
+    config(
+        materialized='incremental',
+        incremental_strategy='microbatch',
+        event_time='event_at_utc',
+        batch_size='month',
+        begin='2024-01-01',
+        lookback=1,
+        unique_key='event_id',
+        on_schema_change='append_new_columns',
+    )
+}}
+
 -- =============================================================================
 -- fct_events
 -- =============================================================================
