@@ -90,3 +90,11 @@ seeds:
         country_code: varchar(2)
         country_name: varchar(100)
         continent: varchar(50)
+
+# ============================================================
+# Vars
+# ============================================================
+vars:
+  low_stock_threshold: 10
+  budget_start_date: '2024-01-01'
+
