@@ -50,6 +50,7 @@ models:
         +schema: sql_server_dbo
       google_sheets:
         +schema: google_sheets
+      +tags: ['staging']
 
     # --- Silver: limpieza y deduplicación. Tablas: la deduplicación es cara y
     #     no queremos repetirla en cada consulta.
@@ -60,6 +61,7 @@ models:
         +schema: sql_server_dbo
       google_sheets:
         +schema: google_sheets
+      +tags: ['silver']
 
     # --- Gold: consumo. La capa la marca la database; el tipo de tabla, el
     #     prefijo del modelo (dim_, fct_, agg_, int_).
@@ -71,10 +73,14 @@ models:
         +schema: intermediate
       core:
         +schema: core
+        +tags: ['core']
       marketing:
         +schema: marketing
+        +tags: ['marketing']
       product:
         +schema: product
+        +tags: ['product']
+      +tags: ['gold']
 
 # =============================================================================
 # Seeds
@@ -90,3 +96,16 @@ seeds:
         country_code: varchar(2)
         country_name: varchar(100)
         continent: varchar(50)
+
+# ============================================================
+# Vars
+# ============================================================
+vars:
+  low_stock_threshold: 10
+  budget_start_date: '2024-01-01'
+
+# ============================================================
+# Run end
+# ============================================================
+on-run-end:
+- "{{ log_run_summary(results) }}"
