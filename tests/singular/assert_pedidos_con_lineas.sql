@@ -1,13 +1,12 @@
-{{
-    config(
-        severity='error',
-        warn_if='>0',
-        error_if='>10'
-    )
-}}
-select i.order_id,
-        o.order_id,
-        i.product_id
-from {{ref("fct_order_items")}} i
-full join {{ref("fct_orders")}} o on i.order_id = o.order_id
-where i.order_id is null or o.order_id is null
+-- =============================================================================
+-- Test singular: todo pedido debe tener al menos una línea de pedido.
+-- =============================================================================
+-- Devuelve los pedidos de fct_orders que no aparecen en fct_order_items.
+-- =============================================================================
+
+select
+      o.order_id
+    , o.order_created_at_utc
+from {{ ref('fct_orders') }} o
+left join {{ ref('fct_order_items') }} oi on o.order_id = oi.order_id
+where oi.order_id is null
