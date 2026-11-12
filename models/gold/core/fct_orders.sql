@@ -12,7 +12,7 @@ with orders as (
 final as (
     select
           order_id
-        , user_id
+        --, user_id
         , address_id
         , shipping_state
         , shipping_country
